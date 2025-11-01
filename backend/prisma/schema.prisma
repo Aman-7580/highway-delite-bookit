@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Experience {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  description String
+  priceCents  Int
+  imageUrl    String
+  createdAt   DateTime  @default(now())
+
+  // Relations
+  bookings    Booking[]
+}
+
+model Booking {
+  id            Int          @id @default(autoincrement())
+  experienceId  Int
+  experience    Experience   @relation(fields: [experienceId], references: [id])
+  userName      String
+  userEmail     String
+  createdAt     DateTime     @default(now())
+}
