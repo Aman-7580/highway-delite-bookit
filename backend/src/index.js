@@ -8,7 +8,7 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://highway-delite-bookit.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
